@@ -5,17 +5,16 @@ import {
   Tab,
   TabPanels,
   TabPanel,
-  Input,
-  IconButton,
-  Select,
-  HStack,
   VStack,
   Image,
   Heading,
 } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
 import React, { FC } from "react";
 import logo from "../assets/logo.svg";
+import Players from "./Players";
+import Matches from "./Matches";
+import Team from "./Team";
+import Events from "./Events";
 
 const Home: FC = () => {
   return (
@@ -29,50 +28,28 @@ const Home: FC = () => {
               src={logo}
               alt="Footmandu"
             />
-            <Heading>FOOTMANDU</Heading>
+            <Heading>Everything about Premier League</Heading>
           </Center>
 
           <Tabs variant="soft-rounded" colorScheme="green">
             <TabList>
-              <Tab>Live Match</Tab>
+              <Tab>Matches</Tab>
               <Tab>Players</Tab>
               <Tab>Teams</Tab>
               <Tab>Events</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
-                <Select placeholder="Select live match">
-                  <option value="option1">Option 1</option>
-                  <option value="option2">Option 2</option>
-                  <option value="option3">Option 3</option>
-                </Select>
+                <Matches />
               </TabPanel>
               <TabPanel>
-                <HStack spacing="15px">
-                  <Input variant="outline" placeholder="Enter player name" />
-                  <IconButton
-                    aria-label="Search database"
-                    icon={<SearchIcon />}
-                    colorScheme="teal"
-                  />
-                </HStack>
+                <Players />
               </TabPanel>
               <TabPanel>
-                <HStack spacing="15px">
-                  <Input variant="outline" placeholder="Enter team name" />
-                  <IconButton
-                    aria-label="Search database"
-                    icon={<SearchIcon />}
-                    colorScheme="teal"
-                  />
-                </HStack>
+                <Team />
               </TabPanel>
               <TabPanel>
-                <Select placeholder="Select event">
-                  <option value="option1">Option 1</option>
-                  <option value="option2">Option 2</option>
-                  <option value="option3">Option 3</option>
-                </Select>
+                <Events />
               </TabPanel>
             </TabPanels>
           </Tabs>

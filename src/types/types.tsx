@@ -1,53 +1,7 @@
-export interface Fixture {
-  id: number;
-  referee: string;
-  date: string;
-  venue: {
-    id: number;
-    name: string;
-    city: string;
-  };
-  status: {
-    short: string;
-    elapsed: number;
-  };
-  teams: {
-    home: {
-      id: number;
-      name: string;
-      logo: string;
-      winner: boolean;
-    };
-    away: {
-      id: number;
-      name: string;
-      logo: string;
-      winner: boolean;
-    };
-  };
-  goals: {
-    home: number;
-    away: number;
-  };
-  score: {
-    halftime: {
-      home: number | null;
-      away: number | null;
-    };
-    fulltime: {
-      home: number | null;
-      away: number | null;
-    };
-    extratime: {
-      home: number | null;
-      away: number | null;
-    };
-    penalty: {
-      home: number | null;
-      away: number | null;
-    };
-  };
-}
+export const GET_PLAYER = "GET_PLAYER";
+export const SET_LOADING = "SET_LOADING";
+export const SET_ERROR = "SET_ERROR";
+export const SET_ALERT = "SET_ALERT";
 
 export interface PlayerData {
   player: {
@@ -67,10 +21,6 @@ export interface PlayerData {
     injured: boolean;
     photo: string;
   };
-  statistics: PlayerStats[];
-}
-
-export interface PlayerStats {
   statistics: {
     team: {
       id: number;
@@ -146,3 +96,29 @@ export interface PlayerStats {
     };
   };
 }
+
+export interface PlayerError {
+  message: string;
+}
+
+export interface playerState {
+  data: PlayerData | null;
+  loading: boolean;
+  error: string;
+}
+
+interface GetPlayerAction {
+  type: typeof GET_PLAYER;
+  payload: PlayerData;
+}
+
+interface SetLoadingAction {
+  type: typeof SET_LOADING;
+}
+
+interface SetErrorAction {
+  type: typeof SET_ERROR;
+  payload: string;
+}
+
+export type PlayerAction = GetPlayerAction | SetLoadingAction | SetErrorAction;
