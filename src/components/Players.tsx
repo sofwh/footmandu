@@ -1,9 +1,10 @@
 import React, { FC, useState, FormEvent } from "react";
-import { HStack, useToast } from "@chakra-ui/react";
+import { Center, Container, HStack, Stack, useToast } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPlayer, setLoading } from "../store/actions/playerActions";
 import PlayerInfo from "./PlayerInfo";
 import { RootState } from "../store";
+import { PacmanLoader } from "react-spinners";
 
 const Players: FC = () => {
   const playerData = useSelector((state: RootState) => state.players.data);
@@ -15,50 +16,45 @@ const Players: FC = () => {
 
   const [playerName, setPlayerName] = useState("");
 
-  const nameHandler = (e: FormEvent<HTMLInputElement>) => {
-    setPlayerName(e.currentTarget.value);
-  };
-
-  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+  const submitHandler = (e: FormEvent<HTMLInputElement>) => {
     e.preventDefault();
+    setPlayerName(e.currentTarget.value);
 
     if (playerName.trim() === "") {
       toast({
-        title: "Player name Required",
-        status: "error",
-        duration: 9000,
+        title: "Minimum 4 character required",
+        status: "info",
+        duration: 1000,
         isClosable: true,
       });
     }
 
     dispatch(setLoading());
     dispatch(getPlayer(playerName));
-    setPlayerName("");
-    console.log(playerData);
   };
   return (
     <>
-      <form onSubmit={submitHandler}>
-        <HStack spacing="15px">
-          <input
-            className="input mb-2 input-search"
-            value={playerName}
-            placeholder="Enter player name"
-            onChange={nameHandler}
-          />
+      <HStack spacing="15px">
+        <input
+          className="input mb-2 input-search"
+          value={playerName}
+          placeholder="Enter player name"
+          onChange={submitHandler}
+        />
+      </HStack>
 
-          <button
-            className="button is-primary is-fullwidth"
-            style={{ maxWidth: 300, margin: "0 auto" }}
-          >
-            Search
-          </button>
-        </HStack>
-      </form>
-
-      <div>
+      <div className="padding-div">
         {loading ? (
-          <h2 className="is-size-3 py-2">Loading...</h2>
+          <Container>
+            <Stack spacing={20} className="player-padding">
+              <PacmanLoader
+                size={20}
+                speedMultiplier={3}
+                margin="2"
+                color="white"
+              />
+            </Stack>
+          </Container>
         ) : (
           playerData && <PlayerInfo data={playerData} />
         )}

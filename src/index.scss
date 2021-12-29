@@ -8,3 +8,19 @@
   border-radius: 20px;
   background-color: black;
 }
+
+.player-padding {
+  padding: 10px;
+}
+.player-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: auto;
+}
+
+.padding-div {
+  margin-top: 10px;
+}

@@ -2,12 +2,12 @@ import { RootState } from "..";
 import { ThunkAction } from "redux-thunk";
 import {
   PlayerAction,
-  PlayerData,
-  PlayerError,
   GET_PLAYER,
   SET_LOADING,
   SET_ERROR,
+  PlayerData,
 } from "../../types/types";
+import axios from "axios";
 export var url: string = "https://api-football-v1.p.rapidapi.com/v3/";
 
 export const getPlayer = (
@@ -15,7 +15,7 @@ export const getPlayer = (
 ): ThunkAction<void, RootState, null, PlayerAction> => {
   return async (dispatch) => {
     try {
-      const res = await fetch(
+      const res = await axios.get(
         `${url}players?search=${player}&league=39&season=2021`,
         {
           method: "GET",
@@ -26,17 +26,14 @@ export const getPlayer = (
           },
         }
       );
-      if (!res.ok) {
-        const resData: PlayerError = await res.json();
-        throw new Error(resData.message);
-      }
+      if (res.status === 200) {
+        const resData: PlayerData[] = await res.data.response;
 
-      const resData: PlayerData = await res.json();
-      dispatch({
-        type: GET_PLAYER,
-        payload: resData,
-      });
-      console.log(resData);
+        dispatch({
+          type: GET_PLAYER,
+          payload: resData,
+        });
+      }
     } catch (err) {
       let msg = (err as Error).message;
       dispatch({

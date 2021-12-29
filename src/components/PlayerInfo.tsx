@@ -1,24 +1,36 @@
 import React, { FC } from "react";
-import { Avatar, Box, Container, Heading, HStack } from "@chakra-ui/react";
+import { Avatar, Container, TagLabel, Tag, HStack } from "@chakra-ui/react";
 import { PlayerData } from "../types/types";
 
 interface playerprops {
-  data: PlayerData;
+  data: PlayerData[];
 }
 
 const PlayerInfo: FC<playerprops> = ({ data }) => {
   return (
     <div>
       <Container>
-        <HStack spacing="24px">
-          <Box w="200px" h="200px" bg="white.400">
-            <Avatar src={data.player.photo} />
-          </Box>
-          <Box w="200px" h="200px" bg="white.400">
-            <Heading>{data.player.name}</Heading>
-          </Box>
-          <Box w="200px" h="200px" bg="white.400"></Box>
-        </HStack>
+        {data.map((playerData, index) => (
+          <HStack>
+            <Avatar src={playerData.player.photo} />
+            <div className="player-profile">
+              <Tag size="lg" variant="solid" ml="5">
+                {playerData.player.name}
+              </Tag>
+
+              <Tag size="lg" color="white" variant="outline">
+                <Avatar
+                  src={playerData.statistics[0].team.logo}
+                  size="xs"
+                  name={playerData.statistics[0].team.name}
+                  ml={-1}
+                  mr={2}
+                />
+                <TagLabel>{playerData.statistics[0].team.name}</TagLabel>
+              </Tag>
+            </div>
+          </HStack>
+        ))}
       </Container>
     </div>
   );

@@ -8,9 +8,10 @@ import {
   VStack,
   Image,
   Heading,
+  HStack,
 } from "@chakra-ui/react";
 import React, { FC } from "react";
-import logo from "../assets/logo.svg";
+import logo from "../assets/pl.png";
 import Players from "./Players";
 import Matches from "./Matches";
 import Team from "./Team";
@@ -21,15 +22,15 @@ const Home: FC = () => {
     <div className="home-Component">
       <Center bg="black" h="100px" color="white" style={{ height: "inherit" }}>
         <VStack spacing="25px">
-          <Center>
+          <HStack>
             <Image
               borderRadius="full"
               boxSize="250px"
               src={logo}
               alt="Footmandu"
             />
-            <Heading>Everything about Premier League</Heading>
-          </Center>
+            <Heading> Premier League-2021</Heading>
+          </HStack>
 
           <Tabs variant="soft-rounded" colorScheme="green">
             <TabList>
