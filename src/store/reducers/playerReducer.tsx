@@ -4,6 +4,7 @@ import {
   SET_LOADING,
   SET_ERROR,
   playerState,
+  GET_PLAYER_STATS,
 } from "../../types/types";
 
 const initialState: playerState = {
@@ -18,6 +19,12 @@ const playerReducer = (
 ): playerState => {
   switch (action.type) {
     case GET_PLAYER:
+      return {
+        data: action.payload,
+        loading: false,
+        error: "",
+      };
+    case GET_PLAYER_STATS:
       return {
         data: action.payload,
         loading: false,

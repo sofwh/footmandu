@@ -1,9 +1,9 @@
 import React, { FC, useState, FormEvent } from "react";
 import { Center, Container, HStack, Stack, useToast } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPlayer, setLoading } from "../store/actions/playerActions";
+import { getPlayer, setLoading } from "../../store/actions/playerActions";
 import PlayerInfo from "./PlayerInfo";
-import { RootState } from "../store";
+import { RootState } from "../../store";
 import { PacmanLoader } from "react-spinners";
 
 const Players: FC = () => {
@@ -42,7 +42,6 @@ const Players: FC = () => {
           onChange={submitHandler}
         />
       </HStack>
-
       <div className="padding-div">
         {loading ? (
           <Container>
@@ -50,7 +49,7 @@ const Players: FC = () => {
               <PacmanLoader
                 size={20}
                 speedMultiplier={3}
-                margin="2"
+                margin={2}
                 color="white"
               />
             </Stack>

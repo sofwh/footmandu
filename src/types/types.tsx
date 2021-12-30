@@ -2,6 +2,7 @@ export const GET_PLAYER = "GET_PLAYER";
 export const SET_LOADING = "SET_LOADING";
 export const SET_ERROR = "SET_ERROR";
 export const SET_ALERT = "SET_ALERT";
+export const GET_PLAYER_STATS = "GET_PLAYER_STATS";
 
 export interface StatsPlayer {
   team: {
@@ -114,6 +115,11 @@ interface GetPlayerAction {
   payload: PlayerData[];
 }
 
+interface GetPlayerStatsAction {
+  type: typeof GET_PLAYER_STATS;
+  payload: PlayerData[];
+}
+
 interface SetLoadingAction {
   type: typeof SET_LOADING;
 }
@@ -123,4 +129,8 @@ interface SetErrorAction {
   payload: string;
 }
 
-export type PlayerAction = GetPlayerAction | SetLoadingAction | SetErrorAction;
+export type PlayerAction =
+  | GetPlayerAction
+  | SetLoadingAction
+  | SetErrorAction
+  | GetPlayerStatsAction;

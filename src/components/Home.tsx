@@ -10,9 +10,9 @@ import {
   Heading,
   HStack,
 } from "@chakra-ui/react";
-import React, { FC } from "react";
+import { FC } from "react";
 import logo from "../assets/pl.png";
-import Players from "./Players";
+import Players from "./Players/Players";
 import Matches from "./Matches";
 import Team from "./Team";
 import Events from "./Events";
