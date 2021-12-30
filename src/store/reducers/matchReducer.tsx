@@ -1,23 +1,23 @@
 import {
-  PlayerAction,
-  GET_PLAYER,
   SET_LOADING,
   SET_ERROR,
-  playerState,
+  matchState,
+  MatchAction,
+  GET_LIVE_MATCH,
 } from "../../types/types";
 
-const initialState: playerState = {
+const initialState: matchState = {
   data: null,
   loading: false,
   error: "",
 };
 
-const playerReducer = (
+const matchReducer = (
   state = initialState,
-  action: PlayerAction
-): playerState => {
+  action: MatchAction
+): matchState => {
   switch (action.type) {
-    case GET_PLAYER:
+    case GET_LIVE_MATCH:
       return {
         data: action.payload,
         loading: false,
@@ -40,4 +40,4 @@ const playerReducer = (
   }
 };
 
-export default playerReducer;
+export default matchReducer;

@@ -1,23 +1,23 @@
 import {
-  PlayerAction,
-  GET_PLAYER,
   SET_LOADING,
   SET_ERROR,
-  playerState,
+  standingState,
+  standingAction,
+  GET_STANDINGS,
 } from "../../types/types";
 
-const initialState: playerState = {
+const initialState: standingState = {
   data: null,
   loading: false,
   error: "",
 };
 
-const playerReducer = (
+const standingReducer = (
   state = initialState,
-  action: PlayerAction
-): playerState => {
+  action: standingAction
+): standingState => {
   switch (action.type) {
-    case GET_PLAYER:
+    case GET_STANDINGS:
       return {
         data: action.payload,
         loading: false,
@@ -40,4 +40,4 @@ const playerReducer = (
   }
 };
 
-export default playerReducer;
+export default standingReducer;

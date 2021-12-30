@@ -11,11 +11,11 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { FC } from "react";
-import logo from "../assets/pl.png";
+import logo from "../assets/logo.svg";
 import Players from "./Players/Players";
-import Matches from "./Matches";
-import Team from "./Team";
-import Events from "./Events";
+import Matches from "./Matches/Matches";
+import Team from "./Teams/Team";
+import Leagues from "./Standings/Leagues";
 
 const Home: FC = () => {
   return (
@@ -29,15 +29,15 @@ const Home: FC = () => {
               src={logo}
               alt="Footmandu"
             />
-            <Heading> Premier League-2021</Heading>
+            <Heading> Footmandu</Heading>
           </HStack>
 
           <Tabs variant="soft-rounded" colorScheme="green">
             <TabList>
-              <Tab>Matches</Tab>
+              <Tab>Live Matches</Tab>
               <Tab>Players</Tab>
               <Tab>Teams</Tab>
-              <Tab>Events</Tab>
+              <Tab>Standings</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
@@ -50,7 +50,7 @@ const Home: FC = () => {
                 <Team />
               </TabPanel>
               <TabPanel>
-                <Events />
+                <Leagues />
               </TabPanel>
             </TabPanels>
           </Tabs>

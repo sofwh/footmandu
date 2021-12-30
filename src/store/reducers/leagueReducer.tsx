@@ -1,23 +1,23 @@
 import {
-  PlayerAction,
-  GET_PLAYER,
   SET_LOADING,
   SET_ERROR,
-  playerState,
+  leagueState,
+  LeagueAction,
+  GET_LEAGUE_STANDING,
 } from "../../types/types";
 
-const initialState: playerState = {
+const initialState: leagueState = {
   data: null,
   loading: false,
   error: "",
 };
 
-const playerReducer = (
+const leagueReducer = (
   state = initialState,
-  action: PlayerAction
-): playerState => {
+  action: LeagueAction
+): leagueState => {
   switch (action.type) {
-    case GET_PLAYER:
+    case GET_LEAGUE_STANDING:
       return {
         data: action.payload,
         loading: false,
@@ -40,4 +40,4 @@ const playerReducer = (
   }
 };
 
-export default playerReducer;
+export default leagueReducer;

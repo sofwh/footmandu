@@ -1,15 +1,10 @@
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import {
-  Avatar,
   Box,
   Button,
   Container,
-  Heading,
   HStack,
-  List,
-  ListItem,
   Stack,
-  Tag,
   Table,
   Thead,
   Tbody,
@@ -17,11 +12,11 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption,
   Kbd,
   Text,
+  Image,
 } from "@chakra-ui/react";
-import React, { FC } from "react";
+import { FC } from "react";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router";
 import { RootState } from "../../store";
@@ -44,7 +39,7 @@ const PlayerStats: FC<idProps> = () => {
       {playerData?.map((p) => (
         <HStack spacing="24px" key={p.player.id}>
           <Box>
-            <Avatar src={p.player.photo} />
+            <Image src={p.player.photo} height="100px" />
             <Text as="kbd">{p.player.name}</Text>
             <Stack mt={4}>
               <Kbd>
@@ -62,7 +57,6 @@ const PlayerStats: FC<idProps> = () => {
                   <Thead>
                     <Tr>
                       <Th>Team</Th>
-                      <Th>League</Th>
                       <Th>Games Played</Th>
                       <Th>Minutes PLayed</Th>
                       <Th>Position</Th>
@@ -107,16 +101,11 @@ const PlayerStats: FC<idProps> = () => {
                       <Tr>
                         <Td>
                           <HStack>
-                            <Avatar src={s.team.logo} mr="2" />
+                            <Image src={s.team.logo} mr="2" height="50px" />
                             <Kbd>{s.team.name}</Kbd>
                           </HStack>
                         </Td>
-                        <Td>
-                          <HStack>
-                            <Avatar src={s.league.logo} mr={2} />
-                            <Kbd>{s.league.name}</Kbd>
-                          </HStack>
-                        </Td>
+
                         <Td>
                           <Kbd>{s.games.appearences}</Kbd>
                         </Td>

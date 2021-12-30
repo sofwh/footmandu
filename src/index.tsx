@@ -6,6 +6,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/index";
+import 'antd/dist/antd.css'; 
+
 
 ReactDOM.render(
   <Provider store={store}>
