@@ -295,11 +295,12 @@ export interface Standings {
     logo: string;
     flag: string;
     season: number;
+    standings: Rankings[];
   };
-  standing: Rankings[];
 }
 
 export interface Rankings {
+  map: any;
   rank: number;
   team: {
     id: number;

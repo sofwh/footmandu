@@ -9,6 +9,7 @@ import {
   Image,
   Heading,
   HStack,
+  Container,
 } from "@chakra-ui/react";
 import { FC } from "react";
 import logo from "../assets/logo.svg";
@@ -20,42 +21,40 @@ import Leagues from "./Standings/Leagues";
 const Home: FC = () => {
   return (
     <div className="home-Component">
-      <Center bg="black" h="100px" color="white" style={{ height: "inherit" }}>
-        <VStack spacing="25px">
-          <HStack>
-            <Image
-              borderRadius="full"
-              boxSize="250px"
-              src={logo}
-              alt="Footmandu"
-            />
-            <Heading> Footmandu</Heading>
-          </HStack>
+      <VStack spacing="25px">
+        <HStack>
+          <Image
+            borderRadius="full"
+            boxSize="250px"
+            src={logo}
+            alt="Footmandu"
+          />
+          <Heading> Footmandu</Heading>
+        </HStack>
 
-          <Tabs variant="soft-rounded" colorScheme="green">
-            <TabList>
-              <Tab>Live Matches</Tab>
-              <Tab>Players</Tab>
-              <Tab>Teams</Tab>
-              <Tab>Standings</Tab>
-            </TabList>
-            <TabPanels>
-              <TabPanel>
-                <Matches />
-              </TabPanel>
-              <TabPanel>
-                <Players />
-              </TabPanel>
-              <TabPanel>
-                <Team />
-              </TabPanel>
-              <TabPanel>
-                <Leagues />
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
-        </VStack>
-      </Center>
+        <Tabs variant="soft-rounded" colorScheme="green">
+          <TabList>
+            <Tab>Live Matches</Tab>
+            <Tab>Players</Tab>
+            <Tab>Teams</Tab>
+            <Tab>Standings</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <Matches />
+            </TabPanel>
+            <TabPanel>
+              <Players />
+            </TabPanel>
+            <TabPanel>
+              <Team />
+            </TabPanel>
+            <TabPanel>
+              <Leagues />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </VStack>
     </div>
   );
 };

@@ -4,12 +4,13 @@ import {
   Accordion,
   AccordionItem,
   AccordionButton,
-  Tag,
   Image,
   HStack,
   AccordionPanel,
   Text,
   Badge,
+  Kbd,
+  VStack,
 } from "@chakra-ui/react";
 import { FC, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -21,17 +22,17 @@ const Matches: FC = () => {
   const matchData = useSelector((state: RootState) => state.matchs.data);
   useEffect(() => {
     dispatch(getMatch());
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <SimpleGrid columns={2} spacing="40px">
         {matchData?.map((m) => (
-          <Accordion allowToggle>
+          <Accordion allowToggle key={m.fixture.id}>
             <AccordionItem>
               <h2>
                 <AccordionButton>
                   <Box flex="1" textAlign="left">
-                    <HStack spacing="10px">
+                    <HStack spacing="30px">
                       <Image src={m.league.flag} height="20px" />
                       <Text as="kbd">
                         {m.league.country}-{m.league.name}-{m.league.round}-
@@ -42,23 +43,27 @@ const Matches: FC = () => {
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
-                <HStack>
-                  <Tag variant="solid" colorScheme="red">
+                <HStack spacing="30px">
+                  <Text as="kbd" color="black">
                     {m.teams.home.name}
-                  </Tag>
-
-                  <div className="score-flex">
+                  </Text>
+                  <VStack>
                     <Badge>
                       {m.goals.home} - {m.goals.away}
                     </Badge>
-                    <h6 className="score-heading">
-                      {m.fixture.status.elapsed}{" "}
-                      <sup className="sup-header">'</sup>
-                    </h6>
-                  </div>
-                  <Tag variant="solid" colorScheme="green">
+                    <HStack>
+                      <Text as="kbd" color="red" fontSize="xs">
+                        {m.fixture.status.elapsed}{" "}
+                      </Text>
+                      <Text as="sup" color="green">
+                        '
+                      </Text>
+                    </HStack>
+                  </VStack>
+
+                  <Text as="kbd" color="black">
                     {m.teams.away.name}
-                  </Tag>
+                  </Text>
                 </HStack>
               </AccordionPanel>
             </AccordionItem>
