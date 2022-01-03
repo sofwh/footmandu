@@ -1,5 +1,12 @@
 import React, { FC, useState, FormEvent } from "react";
-import { Center, Container, HStack, Stack, useToast } from "@chakra-ui/react";
+import {
+  Center,
+  Container,
+  HStack,
+  Input,
+  Stack,
+  useToast,
+} from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPlayer, setLoading } from "../../store/actions/playerActions";
 import PlayerInfo from "./PlayerInfo";
@@ -35,8 +42,8 @@ const Players: FC = () => {
   return (
     <>
       <HStack spacing="15px">
-        <input
-          className="input mb-2 input-search"
+        <Input
+          variant="outline"
           value={playerName}
           placeholder="Enter player name"
           onChange={submitHandler}

@@ -15,20 +15,29 @@ import {
   Center,
   Flex,
   Button,
+  Tooltip,
 } from "@chakra-ui/react";
 import { FC } from "react";
 import { useSelector } from "react-redux";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { RootState } from "../../store";
 import { useNavigate } from "react-router-dom";
+import { Empty } from "antd";
 
 const LeagueDetail: FC = () => {
   const standingsData = useSelector((state: RootState) => state.standings.data);
+  const loading = useSelector((state: RootState) => state.standings.loading);
   const navigate = useNavigate();
   return (
     <div>
       <Container>
         <VStack>
+          {" "}
+          {standingsData ? null : (
+            <>
+              <Empty description="No data found" />
+            </>
+          )}
           <Box p="5">
             <Container>
               <Center>
@@ -37,6 +46,9 @@ const LeagueDetail: FC = () => {
                     <HStack spacing="5">
                       <Image src={data.league.logo} height="30px" />
                       <Text as="kbd">{data.league.name}</Text>
+                      <Tooltip label={data.league.country}>
+                        <Image src={data.league.flag} height="30px" />
+                      </Tooltip>
                     </HStack>
                     <Button
                       rightIcon={<ArrowBackIcon />}
